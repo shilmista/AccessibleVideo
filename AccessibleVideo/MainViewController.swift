@@ -54,7 +54,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, UIPopov
     fileprivate var _filterImage = UIImageView(image: UIImage(named: "VideoFilter"))
     fileprivate var _colorImage = UIImageView(image: UIImage(named: "ColorFilter"))
     
-    lazy fileprivate var _defaults = NSUbiquitousKeyValueStore.default()
+    lazy fileprivate var _defaults = NSUbiquitousKeyValueStore.default
     fileprivate var _defaultsTimer:Timer? = nil
     
     fileprivate var _uiTimer:Timer? = nil

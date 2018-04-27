@@ -183,7 +183,7 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
         _vertexStart[.portraitUpsideDown] = 18
         
         // create default shader library
-        _shaderLibrary = _device!.newDefaultLibrary()!
+        _shaderLibrary = _device!.makeDefaultLibrary()!
         print("Loading shader library...")
         for str in _shaderLibrary.functionNames {
             print("Found shader: \(str)")
@@ -257,9 +257,7 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
         bilinear.label = "bilinear"
         bilinear.minFilter = .linear
         bilinear.magFilter = .linear
-        _samplerStates = [nearest, bilinear].map {self._device!.makeSamplerState(descriptor: $0)}
-
-
+        _samplerStates = [nearest, bilinear].map {self._device!.makeSamplerState(descriptor: $0)!}
         
         // create the command queue
         _commandQueue = _device!.makeCommandQueue()
@@ -324,7 +322,7 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
         sourceTextures:[MTLTexture],
         descriptor: MTLRenderPassDescriptor!,
         viewport:MTLViewport?) {
-            let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)
+            let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
             
             let name:String = pipeline.label ?? "Unnamed Render Pass"
             renderEncoder.pushDebugGroup(name)
@@ -334,16 +332,16 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
             }
             renderEncoder.setRenderPipelineState(pipeline)
             
-            renderEncoder.setVertexBuffer(_vertexBuffer, offset: 0, at: 0)
+            renderEncoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
             
             for (index,(buffer, offset)) in fragmentBuffers.enumerated() {
-                renderEncoder.setFragmentBuffer(buffer, offset: offset, at: index)
+                renderEncoder.setFragmentBuffer(buffer, offset: offset, index: index)
             }
             for (index,texture) in sourceTextures.enumerated() {
-                renderEncoder.setFragmentTexture(texture, at: index)
+                renderEncoder.setFragmentTexture(texture, index: index)
             }
             for (index,samplerState) in _samplerStates.enumerated() {
-                renderEncoder.setFragmentSamplerState(samplerState, at: index)
+                renderEncoder.setFragmentSamplerState(samplerState, index: index)
             }
             
             renderEncoder.drawPrimitives(type: .triangle, vertexStart: vertexIndex, vertexCount: 6, instanceCount: 1)
@@ -425,14 +423,14 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
         }
 
         // commit buffers to GPU
-        commandBuffer.addCompletedHandler() {
+        commandBuffer?.addCompletedHandler() {
             (cmdb:MTLCommandBuffer!) in
             self._renderSemaphore.signal()
             return
         }
         
-        commandBuffer.present(view.currentDrawable!)
-        commandBuffer.commit()
+        commandBuffer?.present(view.currentDrawable!)
+        commandBuffer?.commit()
     }
     
     func resize(_ size: CGSize) {
@@ -524,7 +522,7 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
         }
         
         
-        _intermediateTextures = [descriptor,descriptor].map { self._device!.makeTexture(descriptor: $0) }
+        _intermediateTextures = [descriptor,descriptor].map { self._device!.makeTexture(descriptor: $0)! }
         _intermediateRenderPassDescriptor = _intermediateTextures.map {
             let renderDescriptor = MTLRenderPassDescriptor()
             renderDescriptor.colorAttachments[0].texture = $0
@@ -578,7 +576,7 @@ class FilterRenderer: MetalViewDelegate, CameraCaptureDelegate, RendererControlD
                 descriptor: _rgbDescriptor,
                 viewport: nil)
             
-            commandBuffer.commit()
+            commandBuffer?.commit()
 
             CVMetalTextureCacheFlush(tc, 0)
         }

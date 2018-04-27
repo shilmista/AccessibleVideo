@@ -93,7 +93,8 @@ struct Color {
             return UIColor(red: r, green: g, blue: b, alpha: a)
         }
         set {
-            newValue.getRed(&r, green: &g, blue: &b, alpha: &a)
+            var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+            newValue.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         }
     }
     

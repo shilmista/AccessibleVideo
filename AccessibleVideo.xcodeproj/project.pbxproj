@@ -212,9 +212,9 @@
 				TargetAttributes = {
 					DFD2200419C643BC00913975 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = G8X4XMPVS9;
-						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 5P62F36FT2;
+						LastSwiftMigration = 0930;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -403,17 +403,19 @@
 				CODE_SIGN_ENTITLEMENTS = AccessibleVideo/AccessibleVideo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G8X4XMPVS9;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5P62F36FT2;
 				INFOPLIST_FILE = AccessibleVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doomsdaytech.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shilmista.AccessibleVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "844e4de1-31f3-41ed-a714-ff03741587a1";
-				PROVISIONING_PROFILE_SPECIFIER = "Test Development";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AccessibleVideo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -425,16 +427,18 @@
 				CODE_SIGN_ENTITLEMENTS = AccessibleVideo/AccessibleVideo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = G8X4XMPVS9;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5P62F36FT2;
 				INFOPLIST_FILE = AccessibleVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doomsdaytech.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shilmista.AccessibleVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "844e4de1-31f3-41ed-a714-ff03741587a1";
-				PROVISIONING_PROFILE_SPECIFIER = "Test Development";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AccessibleVideo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

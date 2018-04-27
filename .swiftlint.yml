@@ -1,0 +1,20 @@
+function_body_length: 20
+    
+whitelist_rules: # Rules to run
+    - force_cast
+    - force_try
+    - force_unwrapping
+    - colon
+    - trailing_semicolon
+    - control_statement
+    - trailing_newline
+    - legacy_constant
+    - overridden_super_call
+    - prohibited_super_call
+    - unused_enumerated
+    - implicitly_unwrapped_optional
+    - function_body_length
+    - opening_brace
+    - return_arrow_whitespace
+    - comma
+    - trailing_comma
